@@ -23,8 +23,22 @@
     "compress"
   ],
   "scripts": {
-    "scripts": {
-      
+    "clean": "rimraf dist/{css/*,js/*,images/*}",
+    "autoprefixer": "postcss -u autoprefixer -r dist/css/*",
+    "scss": "node-sass --output-style compressed -o dist/css src/scss",
+    "lint": "eslint src/js",
+    "uglify": "mkdirp dist/js -p && uglifyjs src/js/*.js -m -o dist/js/app.js && uglifyjs src/js/*.js -m -c -o dist/js/app.min.js",
+    "imagemin": "imagemin src/images/* -o dist/images",
+    "serve": "browser-sync start --server --files \"dist/css/*.css, dist/js/*.js, **/*.html, !node_modules/**/*.html\"",
+    "build:css": "npm run scss && npm run autoprefixer",
+    "build:js": "npm run lint && npm run uglify",
+    "build:images": "npm run imagemin",
+    "build:all": "npm run build:css && npm run build:js && npm run build:images",
+    "watch:css": "onchange \"src/scss\" -- npm run build:css",
+    "watch:js": "onchange \"src/js\" -- npm run build:js",
+    "watch:images": "onchange \"src/images\" -- npm run build:images",
+    "watch:all": "npm-run-all -p serve watch:css watch:js watch:images",
+    "postinstall": "npm run build:all && npm run watch:all"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
@@ -41,5 +55,5 @@
     "postcss-cli": "^2.5.2",
     "rimraf": "^2.5.4",
     "uglify-js": "^2.6.2"
-  },
+  }
 }
