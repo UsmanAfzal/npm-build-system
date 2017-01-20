@@ -4,22 +4,22 @@
 ### Node
 
 ## Installation
-### make install
+### `make install`
 
 Installs all dependencies, runs a local server and watches html, css and javascript changes
 
 ## Local server
-### make s
+### `make s`
 
 Runs a local server and watches changes
 
 ## Build
-### make build
+### `make build`
 
 Compiles scss, javascript and images into a _public folder
 
 ## Clean
-### make clean
+### `make clean`
 
 Deletes the _public folder
 
