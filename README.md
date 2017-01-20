@@ -1,7 +1,7 @@
 # Members static prototype 
 
 ## Dependencies
-### Node
+### * Node
 
 ## Installation
 ### `make install`
